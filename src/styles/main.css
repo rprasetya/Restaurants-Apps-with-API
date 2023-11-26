@@ -1,0 +1,554 @@
+@font-face {
+  font-family: "Circular-Black";
+  src: url(../public/fonts/CircularStd-Black.otf);
+}
+@font-face {
+  font-family: "Circular-Medium";
+  src: url(../public/fonts/CircularStd-Medium.otf);
+}
+@font-face {
+  font-family: "Circular-Book";
+  src: url(../public/fonts/CircularStd-Book.otf);
+}
+@font-face {
+  font-family: "Circular-Light";
+  src: url(../public/fonts/CircularStd-Light.otf);
+}
+
+:root{
+  --bg: #202020;
+  --bg-darker: #181818;
+  --color: #EEE6F3;
+  --accent-col: #facd00;
+  --font-1: "Circular-Black";
+  --font-2: "Circular-Medium";
+  --font-3: "Circular-Book";
+  --font-4: "Circular-Light";
+}
+
+::-webkit-scrollbar{
+  display: none;
+}
+
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+html{
+  scroll-behavior: smooth;
+}
+body{
+  background-color: var(--bg-darker);
+  color: var(--color);
+}
+header{
+  display: flex;
+  position: fixed;
+  width: 100vw;
+  padding-block: 2vw;
+  align-items: center;
+  justify-content: space-between;
+  transition: .2s;
+  z-index: 1;
+}
+.skip{
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  text-decoration: none;
+  font-family: var(--font-4);
+  font-size: 2rem;
+  background-color: transparent;
+  color: transparent;
+  top: 150px;
+}
+.skip:focus{
+  color: var(--bg-darker);
+  background-color: var(--accent-col);
+}
+.skip:not(:focus){ pointer-events: none; }
+header h1{
+  display: flex;
+  flex-direction: column;
+  color: var(--color);
+  font-family: var(--font-4);
+  margin-left: clamp(15px, 1vw, 100px);
+  font-size: clamp(8px, 1.3vw, 100px) ;
+  padding: .5vw;
+  background-color: var(--bg);
+  transition: .2s;
+}
+.hamburger{
+  display: none;
+}
+header nav{
+  display: flex;
+  margin-right: 4vw;
+  gap: 1vw;
+}
+header nav a{
+  text-decoration: none;
+  color: var(--bg);
+  font-size: clamp(13px, 1.1vw, 100px);
+  font-family: var(--font-3);
+  transition: .2s;
+  text-align: center;
+  padding-block: clamp(20px, 1.8vw, 100px);
+  padding-inline: 1vw;
+  letter-spacing: 1px;
+}
+header nav a:hover{
+  animation: blink 1s infinite;
+}
+@keyframes blink {
+  0%{
+    background-color: var(--color);
+  }
+  50%{
+    background: none
+  }
+  100%{
+    background-color: var(--color);
+  }
+}
+
+/* HOME */
+main{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  gap: 1vw;
+  background-color: var(--bg-darker);
+}
+.homeCont{
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url(../public/images/heros/hero-image_1.jpg);
+  background-size: cover;
+  background-position: center;
+}
+.homeCont h1{
+  border-radius: 5px;
+  text-align: center;
+  font-size: clamp(30px, 3vw, 100px);
+  font-family: var(--font-4);
+  transition: .2s;
+  color: var(--color);
+  background-color: var(--bg);
+  padding-inline: 1.5vw;
+}
+.homeCont h1:hover{
+  cursor: default;
+}
+/* HOME END */
+
+/* FIND RESTAURANTS */
+.findRestCont{
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 5vw;
+  gap: 1vw;
+  background-color: var(--bg-darker);
+}
+.titleFR{
+  display: flex;
+  flex-direction: column;
+  width: 95%;
+  border-bottom: 1px solid var(--color);
+  height: fit-content;
+  margin-bottom: 3vw;
+}
+.titleFR h1{
+  padding-bottom: 1vw;
+  display: flex;
+  font-size: clamp(50px, 7vw, 100px);
+  font-family: var(--font-4);
+}
+.cardCont{
+  display: grid;
+  width: 90%;
+  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+  gap: 20px;
+}
+.card{
+  background-size: cover;
+  background-position: center;
+  border-radius: 10px;
+  height: 40vh;
+}
+/* .card a:focus{
+  background-color: #181818b7;
+  backdrop-filter: blur(5px);
+} */
+.cardContent a{
+  text-decoration: none;
+  color: var(--color);
+  display: flex;
+  flex-direction: column;
+  z-index: -1;
+}
+.cardContent{
+  height: 100%;
+  width: 100%;
+  justify-content: end;
+  background-color: #18181831;
+  font-family: var(--font-4);
+  display: flex;
+  flex-direction: column;
+  color: var(--color);
+  transition: .2s;
+  padding-inline: 2vw;
+  padding-bottom: 1.2vw;
+}
+.cardContent:hover{
+  background-color: #181818b7;
+  backdrop-filter: blur(5px);
+  cursor: pointer;
+}
+.cardContent a:hover{
+  cursor: default;
+}
+.cardContent a:focus{
+  z-index: 1;
+  cursor: default;
+}
+.cardContent span svg{
+  width: 1.2vw;
+}
+.cardContent span:nth-child(1){
+  font-size: 1.5vw;
+}
+.cardContent span:nth-child(2){
+  font-size: 1.8vw;
+  font-family: var(--font-3);
+}
+.cardContent span:nth-child(3){
+  font-size: 1.5vw;
+}
+/* FIND RESTAURANTS END */
+
+/* MODALS */
+.modalsCont{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.507);
+  color: var(--bg-darker);
+  font-family: var(--font-4);
+  opacity: 1;
+}
+.modal{
+  background-color: var(--color);
+  display: flex;
+  width: fit-content;
+  flex-direction: column;
+  width: 35%;
+  height: 90%;
+  border-radius: 10px;
+  padding-inline: 50px;
+  padding-block: 30px;
+}
+.modalTitle{
+  display: flex;
+  justify-content: space-between;
+  /* align-items: center; */
+}
+.modalTitle h1{
+  font-family: var(--font-4);
+  font-size: 2.5vw;
+}
+.modalTitle button{
+  background: none;
+  font-family: var(--font-2);
+  border: none;
+  font-size: 1.5vw;
+  height: fit-content;
+  min-width: 44px;
+  min-height: 44px;
+  transition: .2s;
+}
+.modalTitle button:hover{
+  font-size: 2vw;
+  background-color: #757575;
+  cursor: pointer;
+}
+.modalContent{
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  padding-block: 3px;
+}
+.modalContent .image{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.modalContent img{
+  width: 100%;
+}
+.modalContent .content{
+  display: flex;
+  flex-direction: column;
+  margin-top: 5px;
+  gap: 0px;
+}
+.linkAddFav{
+  display: flex;
+  justify-content: end;
+}
+.content .addFav{
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  text-decoration: none;
+  font-family: var(--font-3);
+  color: var(--bg-darker);
+  min-width: 44px;
+  min-height: 44px;
+  width: fit-content;
+  fill: var(--bg-darker);
+  gap: 10px;
+  transition: .1s;
+  font-size: 1.5vw;
+  z-index: 1;
+}
+.content .addFav:hover{
+  fill: #E02D2D;
+  color: #E02D2D;
+}
+.content .addFav svg{
+  width: 2vw;
+}
+.cityModal{
+  margin-top: -20px;
+  font-size: 2.5vw;
+  width: fit-content;
+}
+.modalContent .content article{
+  font-size: 1.25vw;
+  text-align: justify;
+  font-family: var(--font-4);
+  margin-top: 3px;
+}
+/* MODALS END */
+
+/* FOOTER */
+footer{
+  width: 100vw;
+  background-color: var(--bg);
+  margin-top: 7vw;
+  font-family: var(--font-4);
+  display: flex;
+  justify-content: center;
+}
+.footerContent{
+  width: 90%;
+  display: flex;
+  padding-block: 3vw;
+  gap: .7vw;
+}
+
+/* Left */
+.footerLeft{
+  display: flex;
+  flex-direction: column;
+  gap: .8vw;
+  font-size: clamp(15px, 3vw, 100px);
+  letter-spacing: 5px;
+  width: 50%;
+}
+.footerTitle{
+  display: flex;
+  flex-direction: column;
+  font-size: clamp(10px, 1.5vw, 100px);
+  width: fit-content;
+  padding: .9vw;
+  background-color: var(--bg-darker);
+  font-family: var(--font-3);
+  gap: 3px;
+  letter-spacing: 0px;
+}
+.direct{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: clamp(15px, 1.7vw, 100px);
+  transition: .2s;
+}
+.direct:hover{
+  cursor: default;
+  gap: 15px;
+}
+.direct span{
+  letter-spacing: 3px;
+}
+.direct svg{
+  width: clamp(15px, 1.7vw, 100px);
+  fill: var(--color);
+}
+
+/* Right */
+.footerRight{
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: end;
+  letter-spacing: 1px;
+}
+.footerRight svg{
+  width: clamp(20px, 2vw, 100px);
+  fill: var(--color);
+}
+.email{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: clamp(11px, 1.5vw, 100px);
+  transition: .2s;
+  text-decoration: none;
+  color: var(--color);
+  padding-block: clamp(12px, 1vw, 100px);
+}
+.email:hover{
+  gap: 15px;
+}
+.phone{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: clamp(10px, 1.4vw, 100px);
+  transition: .2s;
+  text-decoration: none;
+  color: var(--color);
+  padding-block: clamp(12px, 1vw, 100px);
+}
+.phone:hover{
+  gap: 15px;
+}
+/* FOOTER END */
+
+/* Responsive */
+@media screen and (max-width: 768px){
+  .cardContent a{
+    z-index: 1;
+  }
+}
+@media screen and (max-width: 576px){
+  header nav a{
+    background-color: var(--color);
+    filter: invert(100);
+  }
+  .hamburger{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-right: 10vw;
+    z-index: 1;
+    background: none;
+    border: none;
+    padding: 13px;
+  }
+  .hamburger span{
+    width: 25px;
+    height: 3px;
+    background-color: var(--bg-darker);
+  }
+  .activeHamb{
+    filter: invert(100);
+  }
+  header nav{
+    display: none;
+    position: fixed;
+    align-items: center;
+    flex-direction: column;
+    width: 100vw;
+    background-color: #181818dc;
+    margin: 0px;
+    gap: 0;
+    top: 0;
+    padding-top: 14vw;
+  }
+  .activeNav{
+    display: flex;
+  }
+  header nav a{
+    width: 90%;
+    background-color: transparent;
+    border-top: .1px solid var(--bg-darker);
+    border-bottom: .1px solid var(--bg-darker);
+    /* display: none; */
+  }
+  header nav a:hover{
+    animation: none;
+  }
+  /* HOME */
+  .homeCont h1{
+    margin-inline: 20px;
+    color: var(--bg-darker);
+    background-color: var(--color);
+  }
+  /* HOME END */
+
+  /* FIND RESTAURANTS */
+  .cardCont{
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+  .findRestCont{
+    padding-top: 12vw;
+  }
+  .cardContent span svg{
+    width: 5vw;
+  }
+  .cardContent span:nth-child(1){
+    font-size: 6vw;
+  }
+  .cardContent span:nth-child(2){
+    font-size: 8vw;
+  }
+  .cardContent span:nth-child(3){
+    font-size: 6.5vw;
+  }
+  /* FIND RESTAURANTS END */
+
+  /* FOOTER */
+  .footerContent{
+    padding-block: 5vw;
+  }
+  /* Left */
+  .footerLeft{
+    letter-spacing: 1px;
+    gap: 2vw;
+  }
+  .direct{
+    gap: 5px;
+  }
+  .direct:hover{
+    gap: 5px;
+  }
+  .direct span{
+    letter-spacing: 1px;
+  }
+  /* Right */
+  .footerRight{
+    gap: 5px;
+  }
+  .email{
+    gap: 5px;
+  }
+  .phone{
+    gap: 5px;
+  }
+  /* FOOTER END */
+}
