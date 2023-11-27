@@ -9,7 +9,13 @@ import '../styles/main.css';
 import $ from 'jquery';
 import axios from 'axios';
 import { async } from 'regenerator-runtime';
-import { get, set, update } from 'idb-keyval';
+import {
+  set,
+  update,
+  get,
+  createStore,
+  keys,
+} from 'idb-keyval';
 
 $(() => {
   // eslint-disable-next-line func-names
@@ -112,10 +118,6 @@ $(() => {
   });
 });
 
-// const addRestDetailToDB = (data) => {
-//   set('restaurants' {})
-// }
-
 const displayModal = (dataModal) => {
   $(() => {
     $('.modalTitle h1').text(dataModal.name);
@@ -157,6 +159,45 @@ window.showModal = (idRest) => {
   });
 };
 
-window.addToFavorite = (pictureId) => {
+const addingFav = async () => {
+  const customStore = createStore('Restaurants-Apps', 'addFavorite');
+  // set('hello', 'world', customStore);
+  const checkKeys = await keys(customStore).then((response) => response);
+  console.log(checkKeys);
+  if (checkKeys.includes('hello')) {
+    console.log('sudah ada');
+  } else {
+    console.log('belum ada');
+  }
+};
 
+// const dbCheck = async () => {
+//   const dbName = 'Restaurants-Apps';
+//   const dbVersion = 1;
+//   const dbReq = indexedDB.open(dbName, dbVersion);
+
+//   dbReq.onupgradeneeded = (event) => {
+//     const db = event.target.result;
+//     // console.log(db.version);
+//     if (!db.objectStoreNames.contains('addFavorite')) {
+//       const objectStore = db.createObjectStore('addFavorite', {
+//         keyPath: 'id', autoIncrement: true,
+//       });
+//       addingFav();
+//     }
+//   };
+
+//   dbReq.onsuccess = (event) => {
+//     const db = event.target.result;
+//     console.log(event);
+//   };
+
+//   dbReq.onerror = (event) => {
+//     console.error('Error opening database:', event.target.error);
+//   };
+// };
+
+window.addToFavorite = async (pictureId) => {
+  await addingFav();
+  // update('counter', (val) => (val || 0) + 1);
 };
