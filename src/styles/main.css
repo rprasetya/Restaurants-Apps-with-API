@@ -320,7 +320,7 @@ main{
   fill: var(--bg-darker);
   gap: 10px;
   transition: .1s;
-  font-size: 1.5vw;
+  font-size: 1vw;
   z-index: 1;
 }
 .content .addFav:hover{
@@ -328,15 +328,20 @@ main{
   color: #E02D2D;
 }
 .content .addFav svg{
-  width: 2vw;
+  width: 1.4vw;
 }
 .cityModal{
   margin-top: -20px;
-  font-size: 2.5vw;
+  font-size: 2vw;
   width: fit-content;
 }
+.description{
+  font-family: var(--font-3);
+  font-size: 1.3vw;
+  margin-top: 5px;
+}
 .modalContent .content article{
-  font-size: 1.25vw;
+  font-size: 1vw;
   text-align: justify;
   font-family: var(--font-4);
   margin-top: 3px;
@@ -443,6 +448,9 @@ footer{
 @media screen and (max-width: 768px){
   .cardContent a{
     z-index: 1;
+  }
+  .modal{
+    width: 80%;
   }
 }
 @media screen and (max-width: 576px){

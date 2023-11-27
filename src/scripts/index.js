@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 /* eslint-disable max-len */
 /* eslint-disable no-console */
 /* eslint-disable no-unused-vars */
@@ -8,7 +9,7 @@ import '../styles/main.css';
 import $ from 'jquery';
 import axios from 'axios';
 import { async } from 'regenerator-runtime';
-import { get, set } from 'idb-keyval';
+import { get, set, update } from 'idb-keyval';
 
 $(() => {
   // eslint-disable-next-line func-names
@@ -46,7 +47,6 @@ const fetchAPIRestaurantsAll = async () => {
 const load = async () => {
   const restaurants = await fetchAPIRestaurantsAll();
   const customElements = [];
-
   restaurants.forEach((restaurant) => {
     customElements.push(`
         <div class="card" onclick="showModal('${restaurant.id}')" style="background-image: url(https://restaurant-api.dicoding.dev/images/medium/${restaurant.pictureId});">
@@ -112,6 +112,10 @@ $(() => {
   });
 });
 
+// const addRestDetailToDB = (data) => {
+//   set('restaurants' {})
+// }
+
 const displayModal = (dataModal) => {
   $(() => {
     $('.modalTitle h1').text(dataModal.name);
@@ -154,5 +158,5 @@ window.showModal = (idRest) => {
 };
 
 window.addToFavorite = (pictureId) => {
-  // alert(pictureId);
+
 };
