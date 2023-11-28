@@ -208,7 +208,12 @@ const removeFav = async (pictureId) => {
   });
 };
 
-let addToFavoriteClick = 1
+$(() => {
+  $('.addFav').on('click', () => {
+    $('.addFav').toggleClass('onFav')
+  })
+});
+
 window.addToFavorite = async (pictureId) => {
   const customStore = createStore('Restaurants-Apps', 'addFavorite');
   const entriesData = await values(customStore).then((response) => response);
@@ -222,16 +227,14 @@ window.addToFavorite = async (pictureId) => {
     }
   });
 
-  if (addToFavoriteClick < 2) {
-    addToFavoriteClick++;
-    $(() => {
-      $('.addFav').on('')
-    });
-  } else {
-    addToFavoriteClick = addToFavoriteClick - 1;
-    $(() => {
+  
+  // if (addToFavoriteClick < 2) {
+  //   addToFavoriteClick++;
+  // } else {
+  //   addToFavoriteClick = addToFavoriteClick - 1;
+  //   $(() => {
       
-    });
+  //   });
     
-  }
+  // }
 };
