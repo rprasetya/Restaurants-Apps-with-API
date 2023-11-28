@@ -13,9 +13,13 @@ import {
   set,
   update,
   get,
+  del,
   createStore,
   keys,
+  entries,
+  values,
 } from 'idb-keyval';
+import { openDB } from 'idb';
 
 $(() => {
   // eslint-disable-next-line func-names
@@ -159,45 +163,52 @@ window.showModal = (idRest) => {
   });
 };
 
-const addingFav = async () => {
-  const customStore = createStore('Restaurants-Apps', 'addFavorite');
-  // set('hello', 'world', customStore);
-  const checkKeys = await keys(customStore).then((response) => response);
-  console.log(checkKeys);
-  if (checkKeys.includes('hello')) {
-    console.log('sudah ada');
-  } else {
-    console.log('belum ada');
-  }
+const addingFav = async (pictureId) => {
+  const db = await openDB('Restaurants-Apps', 1, {
+    upgrade(db) {
+      db.createObjectStore('addFavorite', {
+        keyPath: 'id',
+        autoIncrement: true,
+      });
+    },
+  });
+  
+  await db.add('addFavorite', { restaurantId: pictureId });
+  console.log(
+    await db.getAll('addFavorite'),
+  );
 };
 
-// const dbCheck = async () => {
-//   const dbName = 'Restaurants-Apps';
-//   const dbVersion = 1;
-//   const dbReq = indexedDB.open(dbName, dbVersion);
+const removeFav = async (pictureId) => {
+  const customStore = createStore('Restaurants-Apps', 'addFavorite');
+  const entriesData = await values(customStore).then((response) => response);
+  
+  entriesData.forEach(async (entry) => {
+    if(entry.restaurantId === pictureId) {
+      await del(entry.id, customStore);
+    }
+  })
+};
 
-//   dbReq.onupgradeneeded = (event) => {
-//     const db = event.target.result;
-//     // console.log(db.version);
-//     if (!db.objectStoreNames.contains('addFavorite')) {
-//       const objectStore = db.createObjectStore('addFavorite', {
-//         keyPath: 'id', autoIncrement: true,
-//       });
-//       addingFav();
-//     }
-//   };
-
-//   dbReq.onsuccess = (event) => {
-//     const db = event.target.result;
-//     console.log(event);
-//   };
-
-//   dbReq.onerror = (event) => {
-//     console.error('Error opening database:', event.target.error);
-//   };
-// };
-
+let addToFavoriteClick = 1;
 window.addToFavorite = async (pictureId) => {
-  await addingFav();
-  // update('counter', (val) => (val || 0) + 1);
+  if (addToFavoriteClick < 2) {
+    await addingFav(pictureId);
+    addToFavoriteClick++;
+    $(() => {
+      $('.addFav').css({
+        'color': '#E02D2D',
+        'fill': '#E02D2D',
+      });
+    });
+  } else {
+    addToFavoriteClick = addToFavoriteClick - 1;
+    await removeFav(pictureId)
+    $(() => {
+      $('.addFav').css({
+        'color': 'var(--bg-darker)',
+        'fill': 'var(--bg-darker)',
+      });
+    });
+  }
 };
