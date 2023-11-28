@@ -7,7 +7,7 @@
 import 'regenerator-runtime'; /* for async await transpile */
 import '../styles/main.css';
 import $ from 'jquery';
-import axios from 'axios';
+import axios, { all } from 'axios';
 import { async } from 'regenerator-runtime';
 import {
   set,
@@ -119,6 +119,9 @@ $(() => {
       opacity: '1',
       top: '-100vh',
     });
+    $('.addFav').removeClass( (index, className) => {
+      return (className.match(/\b(?!addFav)\w+/g) || []).join(' ');
+    });
   });
 });
 
@@ -128,7 +131,8 @@ const displayModal = (dataModal) => {
     $('.modalContent .image img').attr('src', `https://restaurant-api.dicoding.dev/images/large/${dataModal.pictureId}`);
     $('.cityModal').text(dataModal.city);
     $('.descModal').text(dataModal.description);
-    $('.addFav').attr('onclick', `addToFavorite('${dataModal.id}')`);
+    $('.addFav').attr('onclick', `addToFavorite('${dataModal.id}')`)
+      .addClass(`${dataModal.id}`);
   });
 };
 
@@ -146,8 +150,21 @@ const modals = async (idRest) => {
   xhttp.send();
 };
 
+const checkFav = async (idRest) => {
+  const customStore = createStore('Restaurants-Apps', 'addFavorite');
+  const entriesData = await values(customStore).then((response) => response);
+  entriesData.forEach(async (entry) => {
+    if(entry.restaurantId === idRest) {
+      $(() => {
+        $('.addFav').addClass('onFav')
+      })
+    }
+  });
+}
+
 window.showModal = (idRest) => {
   modals(idRest);
+  checkFav(idRest);
   $(() => {
     $('.modalsCont').css({
       'background-color': 'rgba(0, 0, 0, 0.507)',
@@ -172,43 +189,49 @@ const addingFav = async (pictureId) => {
       });
     },
   });
-  
   await db.add('addFavorite', { restaurantId: pictureId });
-  console.log(
-    await db.getAll('addFavorite'),
-  );
+  // console.log(
+  //   await db.getAll('addFavorite'),
+  // );
+    // $(() => {
+    //   $(`.${pictureId}`).addClass('onFav');
+    // })
 };
 
 const removeFav = async (pictureId) => {
   const customStore = createStore('Restaurants-Apps', 'addFavorite');
   const entriesData = await values(customStore).then((response) => response);
-  
   entriesData.forEach(async (entry) => {
     if(entry.restaurantId === pictureId) {
       await del(entry.id, customStore);
     }
-  })
+  });
 };
 
-let addToFavoriteClick = 1;
+let addToFavoriteClick = 1
 window.addToFavorite = async (pictureId) => {
+  const customStore = createStore('Restaurants-Apps', 'addFavorite');
+  const entriesData = await values(customStore).then((response) => response);
+  addingFav(pictureId);
+
+  entriesData.forEach(async (entry) => {
+    if(entry.restaurantId === pictureId) {
+      removeFav(pictureId);
+    } else {
+      // addingFav(pictureId);
+    }
+  });
+
   if (addToFavoriteClick < 2) {
-    await addingFav(pictureId);
     addToFavoriteClick++;
     $(() => {
-      $('.addFav').css({
-        'color': '#E02D2D',
-        'fill': '#E02D2D',
-      });
+      $('.addFav').on('')
     });
   } else {
     addToFavoriteClick = addToFavoriteClick - 1;
-    await removeFav(pictureId)
     $(() => {
-      $('.addFav').css({
-        'color': 'var(--bg-darker)',
-        'fill': 'var(--bg-darker)',
-      });
+      
     });
+    
   }
 };

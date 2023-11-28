@@ -327,6 +327,10 @@ main{
   fill: #E02D2D;
   color: #E02D2D;
 }
+.content .onFav{
+  fill: #E02D2D;
+  color: #E02D2D;
+}
 .content .addFav svg{
   width: 1.4vw;
 }
