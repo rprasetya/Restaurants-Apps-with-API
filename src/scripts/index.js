@@ -119,14 +119,13 @@ $(() => {
       opacity: '1',
       top: '-100vh',
     });
-    $('.addFav').removeClass( (index, className) => {
-      return (className.match(/\b(?!addFav)\w+/g) || []).join(' ');
+    $('.addFav').removeClass((index, className) => {
+      (className.match(/\b(?!addFav)\w+/g) || []).join(' ');
     });
   });
 });
 
 const displayModal = (dataModal) => {
-  console.log(dataModal);
   $(() => {
     $('.modalTitle h1').text(dataModal.name);
     $('.modalContent .image img').attr('src', `https://restaurant-api.dicoding.dev/images/large/${dataModal.pictureId}`);
@@ -155,13 +154,13 @@ const checkFav = async (idRest) => {
   const customStore = createStore('Restaurants-Apps', 'addFavorite');
   const entriesData = await values(customStore).then((response) => response);
   entriesData.forEach(async (entry) => {
-    if(entry.restaurantId === idRest) {
+    if (entry.restaurantId === idRest) {
       $(() => {
-        $('.addFav').addClass('onFav')
-      })
+        $('.addFav').addClass('onFav');
+      });
     }
   });
-}
+};
 
 window.showModal = (idRest) => {
   modals(idRest);
@@ -182,22 +181,25 @@ window.showModal = (idRest) => {
 };
 
 const addingFav = async (pictureId) => {
-  const db = await openDB('Restaurants-Apps', 1, {
-    upgrade(db) {
-      db.createObjectStore('addFavorite', {
-        keyPath: 'id',
-        autoIncrement: true,
-      });
-    },
-  });
-  await db.add('addFavorite', { restaurantId: pictureId });
+  const customStore = createStore('Restaurant-Apps', 'addFavorite');
+  set('restaurantId', pictureId, customStore);
+  // const db = await openDB('Restaurants-Apps', 1, {
+  //   // eslint-disable-next-line no-shadow
+  //   upgrade(db) {
+  //     db.createObjectStore('addFavorite', {
+  //       keyPath: 'id',
+  //       autoIncrement: true,
+  //     });
+  //   },
+  // });
+  // await db.add('addFavorite', { restaurantId: pictureId });
 };
 
 const removeFav = async (pictureId) => {
   const customStore = createStore('Restaurants-Apps', 'addFavorite');
   const entriesData = await values(customStore).then((response) => response);
   entriesData.forEach(async (entry) => {
-    if(entry.restaurantId === pictureId) {
+    if (entry.restaurantId === pictureId) {
       await del(entry.id, customStore);
     }
   });
@@ -205,8 +207,8 @@ const removeFav = async (pictureId) => {
 
 $(() => {
   $('.addFav').on('click', () => {
-    $('.addFav').toggleClass('onFav')
-  })
+    $('.addFav').toggleClass('onFav');
+  });
 });
 
 window.addToFavorite = async (pictureId) => {
@@ -215,7 +217,7 @@ window.addToFavorite = async (pictureId) => {
   addingFav(pictureId);
 
   entriesData.forEach(async (entry) => {
-    if(entry.restaurantId === pictureId) {
+    if (entry.restaurantId === pictureId) {
       removeFav(pictureId);
     }
   });
