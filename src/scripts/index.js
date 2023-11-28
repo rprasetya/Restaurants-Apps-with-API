@@ -126,6 +126,7 @@ $(() => {
 });
 
 const displayModal = (dataModal) => {
+  console.log(dataModal);
   $(() => {
     $('.modalTitle h1').text(dataModal.name);
     $('.modalContent .image img').attr('src', `https://restaurant-api.dicoding.dev/images/large/${dataModal.pictureId}`);
@@ -190,12 +191,6 @@ const addingFav = async (pictureId) => {
     },
   });
   await db.add('addFavorite', { restaurantId: pictureId });
-  // console.log(
-  //   await db.getAll('addFavorite'),
-  // );
-    // $(() => {
-    //   $(`.${pictureId}`).addClass('onFav');
-    // })
 };
 
 const removeFav = async (pictureId) => {
@@ -222,19 +217,6 @@ window.addToFavorite = async (pictureId) => {
   entriesData.forEach(async (entry) => {
     if(entry.restaurantId === pictureId) {
       removeFav(pictureId);
-    } else {
-      // addingFav(pictureId);
     }
   });
-
-  
-  // if (addToFavoriteClick < 2) {
-  //   addToFavoriteClick++;
-  // } else {
-  //   addToFavoriteClick = addToFavoriteClick - 1;
-  //   $(() => {
-      
-  //   });
-    
-  // }
 };
