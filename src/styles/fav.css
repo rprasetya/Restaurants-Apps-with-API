@@ -37,7 +37,7 @@ html{
   scroll-behavior: smooth;
 }
 body{
-  background-color: var(--color);
+  background-color: var(--accent-col);
 }
 /* HEADER */
 header{
@@ -50,22 +50,6 @@ header{
   transition: .2s;
   z-index: 1;
 }
-.skip{
-  position: fixed;
-  display: flex;
-  justify-content: center;
-  text-decoration: none;
-  font-family: var(--font-4);
-  font-size: 2rem;
-  background-color: transparent;
-  color: transparent;
-  top: 150px;
-}
-.skip:focus{
-  color: var(--bg-darker);
-  background-color: var(--accent-col);
-}
-.skip:not(:focus){ pointer-events: none; }
 header h1{
   display: flex;
   flex-direction: column;
@@ -103,9 +87,8 @@ header nav a:hover{
 main{
   display: flex;
   gap: 0px;
-  background-color: var(--accent-col);
   font-family: var(--font-4);
-  color: var(--bg-darker);
+  background-color: var(--accent-col);
 }
 /* TITLE */
 /* TITLE END */
@@ -136,50 +119,51 @@ main{
 /* CONTENT */
 .contentFavCont{
   width: 100vw;
-  height: 100vh;
+  /* height: 100vh; */
+  padding-bottom: 100px;
   display: flex;
   flex-direction: column;
   align-items: center;
   padding-top: 5vw;
+  gap: 90px;
 }
 .contentFav{
   color: var(--bg-darker);
   display: flex;
   width: 80%;
   font-family: var(--font-3);
-  gap: 2vw;
+  gap: 40px;
 }
 .detail{
-  font-size: 3vw;
   display: flex;
   flex-direction: column;
   width: 50%;
+  gap: 15px;
 }
 .nameRest{
-  font-size: 3.5vw;
+  font-size: 3.8vw;
+  font-family: var(--font-1);
 }
-.ratingRest{
-  font-size: 1.8vw;
-  font-family: var(--font-4);
+.contentCont{
   display: flex;
-  align-items: center;
-  gap: 10px;
+  flex-direction: column;
 }
-.ratingRest svg{
-  fill: var(--bg-darker);
-  width: 2vw;
-  margin-bottom: 3px;
+.contentCont span:nth-child(1){
+  font-size: 3vw;
+  font-family: var(--font-2);
 }
-.cityRest{
-  font-size: 1.7vw;
+.contentCont span:nth-child(2){
   font-family: var(--font-4);
-}
-.addressRest{
   font-size: 1.7vw;
-  font-family: var(--font-4);
+}
+.descRestCont{
+  display: flex;
+  flex-direction: column;
+  font-size: 3vw;
+  font-family: var(--font-2);
 }
 .descRest{
-  font-size: 1.3vw;
+  font-size: 1.5vw;
   font-family: var(--font-4);
   text-align: justify;
 }
@@ -189,8 +173,6 @@ main{
 .pic img{
   width: 100%;
 }
-
-
 /* CONTENT END */
 
 

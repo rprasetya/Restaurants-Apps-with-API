@@ -159,8 +159,8 @@ const checkFav = async (idRest) => {
   entriesData.forEach(async (entry) => {
     if (entry === idRest) {
       $(() => {
-        $(`.addFav`).addClass('onFav')
-      })
+        $('.addFav').addClass('onFav');
+      });
     }
   });
 };
@@ -184,30 +184,27 @@ window.showModal = (idRest) => {
 };
 
 const addingFav = async (pictureId) => {
-  const db = await openDB('Restaurants-Apps', 1)
+  const db = await openDB('Restaurants-Apps', 1);
   const transaction = db.transaction('addFavorite', 'readwrite');
   const objectStore = transaction.objectStore('addFavorite');
   const request = objectStore.add('', pictureId);
   request.onsuccess = (event) => {
     console.log('Data added successfully to myObjectStore');
   };
-  
   request.onerror = (event) => {
     console.error('Error adding data to myObjectStore:', event.target.error);
   };
-  
   transaction.oncomplete = (event) => {
     console.log('Transaction completed successfully');
   };
-  
   transaction.onerror = (event) => {
     console.error('Transaction failed:', event.target.error);
   };
 };
 
 const removeFav = async (pictureId) => {
-  const customStore = createStore('Restaurants-Apps', 'addFavorite')
-  del(pictureId, customStore)
+  const customStore = createStore('Restaurants-Apps', 'addFavorite');
+  del(pictureId, customStore);
 };
 
 window.addToFavorite = async (pictureId) => {
@@ -217,6 +214,5 @@ window.addToFavorite = async (pictureId) => {
     removeFav(pictureId);
     return;
   }
-  
   addingFav(pictureId);
 };

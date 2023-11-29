@@ -171,6 +171,7 @@ main{
   display: flex;
   font-size: clamp(50px, 7vw, 100px);
   font-family: var(--font-4);
+  color: var(--color);
 }
 .cardCont{
   display: grid;
