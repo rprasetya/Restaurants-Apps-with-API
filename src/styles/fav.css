@@ -178,6 +178,11 @@ main{
   font-size: 1.7vw;
   font-family: var(--font-4);
 }
+.descRest{
+  font-size: 1.3vw;
+  font-family: var(--font-4);
+  text-align: justify;
+}
 .pic{
   width: 50%;
 }
