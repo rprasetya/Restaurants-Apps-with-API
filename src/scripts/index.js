@@ -119,9 +119,12 @@ $(() => {
       opacity: '1',
       top: '-100vh',
     });
-    $('.addFav').removeClass((index, className) => {
-      (className.match(/\b(?!addFav)\w+/g) || []).join(' ');
-    });
+    $('.addFav').removeAttr('id');
+    $('.addFav').removeClass('onFav');
+  });
+
+  $('.addFav').on('click', () => {
+    $('.addFav').toggleClass('onFav');
   });
 });
 
@@ -132,7 +135,7 @@ const displayModal = (dataModal) => {
     $('.cityModal').text(dataModal.city);
     $('.descModal').text(dataModal.description);
     $('.addFav').attr('onclick', `addToFavorite('${dataModal.id}')`)
-      .addClass(`${dataModal.id}`);
+      .attr('id', `${dataModal.id}`);
   });
 };
 
@@ -152,12 +155,12 @@ const modals = async (idRest) => {
 
 const checkFav = async (idRest) => {
   const customStore = createStore('Restaurants-Apps', 'addFavorite');
-  const entriesData = await values(customStore).then((response) => response);
+  const entriesData = await keys(customStore).then((response) => response);
   entriesData.forEach(async (entry) => {
-    if (entry.restaurantId === idRest) {
+    if (entry === idRest) {
       $(() => {
-        $('.addFav').addClass('onFav');
-      });
+        $(`.addFav`).addClass('onFav')
+      })
     }
   });
 };
@@ -181,44 +184,39 @@ window.showModal = (idRest) => {
 };
 
 const addingFav = async (pictureId) => {
-  const customStore = createStore('Restaurant-Apps', 'addFavorite');
-  set('restaurantId', pictureId, customStore);
-  // const db = await openDB('Restaurants-Apps', 1, {
-  //   // eslint-disable-next-line no-shadow
-  //   upgrade(db) {
-  //     db.createObjectStore('addFavorite', {
-  //       keyPath: 'id',
-  //       autoIncrement: true,
-  //     });
-  //   },
-  // });
-  // await db.add('addFavorite', { restaurantId: pictureId });
+  const db = await openDB('Restaurants-Apps', 1)
+  const transaction = db.transaction('addFavorite', 'readwrite');
+  const objectStore = transaction.objectStore('addFavorite');
+  const request = objectStore.add('', pictureId);
+  request.onsuccess = (event) => {
+    console.log('Data added successfully to myObjectStore');
+  };
+  
+  request.onerror = (event) => {
+    console.error('Error adding data to myObjectStore:', event.target.error);
+  };
+  
+  transaction.oncomplete = (event) => {
+    console.log('Transaction completed successfully');
+  };
+  
+  transaction.onerror = (event) => {
+    console.error('Transaction failed:', event.target.error);
+  };
 };
 
 const removeFav = async (pictureId) => {
-  const customStore = createStore('Restaurants-Apps', 'addFavorite');
-  const entriesData = await values(customStore).then((response) => response);
-  entriesData.forEach(async (entry) => {
-    if (entry.restaurantId === pictureId) {
-      await del(entry.id, customStore);
-    }
-  });
+  const customStore = createStore('Restaurants-Apps', 'addFavorite')
+  del(pictureId, customStore)
 };
-
-$(() => {
-  $('.addFav').on('click', () => {
-    $('.addFav').toggleClass('onFav');
-  });
-});
 
 window.addToFavorite = async (pictureId) => {
   const customStore = createStore('Restaurants-Apps', 'addFavorite');
-  const entriesData = await values(customStore).then((response) => response);
+  const entriesData = await keys(customStore).then((response) => response);
+  if (entriesData.includes(pictureId)) {
+    removeFav(pictureId);
+    return;
+  }
+  
   addingFav(pictureId);
-
-  entriesData.forEach(async (entry) => {
-    if (entry.restaurantId === pictureId) {
-      removeFav(pictureId);
-    }
-  });
 };
