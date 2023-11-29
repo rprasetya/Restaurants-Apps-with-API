@@ -6,6 +6,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 module.exports = {
   entry: {
     app: path.resolve(__dirname, 'src/scripts/index.js'),
+    fav: path.resolve(__dirname, 'src/scripts/fav.js'),
   },
   output: {
     filename: '[name].bundle.js',
@@ -33,6 +34,10 @@ module.exports = {
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: path.resolve(__dirname, 'src/templates/index.html'),
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'fav.html',
+      template: path.resolve(__dirname, 'src/templates/fav.html'),
     }),
     new CopyWebpackPlugin({
       patterns: [
