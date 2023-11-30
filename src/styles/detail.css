@@ -36,12 +36,106 @@
 html{
     scroll-behavior: smooth;
 }
-body{
+.bodyDetail{
     background-color: var(--color);
     color: var(--bg-darker);
+    font-family: var(--font-4);
 }
-main{
+.headerDetail{
+    display: flex;
+    position: fixed;
+    align-items: center;
+    top: 0;
+}
+.headerDetail a{
+    color: var(--bg-darker);
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.8vw;
+    padding-left: 30px;
+    font-family: var(--font-3);
+    /* margin-top: 0px; */
+}
+.headerDetail a svg{
+    width: 3vw;
+}
+.mainDetail{
     background-color: var(--color);
-    height: 100vh;
     width: 100vw;
 }
+/* DETAIL */
+.detailCont{
+    width: 100vw;
+    background-color: var(--col);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-block: 90px;
+    gap: 40px;
+}
+.detailTitle{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.detailTitle span{
+    font-size: 2.5vw;
+}
+.detailTitle h1{
+    font-size: 5vw;
+    font-family: var(--font-3);
+}
+.picDetail{
+    width: 85%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.picDetail .imgDetail{
+    width: 100%;
+    border-radius: 20px;
+}
+.detailContent{
+    display: flex;
+    flex-direction: column;
+    width: 85%;
+    font-family: var(--font-3);
+    gap: 20px;
+}
+.adrCityDetail{
+    font-size: 4vw;
+    font-family: var(--font-2);
+}
+.descDetail{
+    display: flex;
+    flex-direction: column;
+    font-size: 3vw;
+    font-family: var(--font-3);
+}
+.desc{
+    font-size: 2vw;
+    font-family: var(--font-4);
+    text-align: justify;
+}
+.menus{
+    display: flex;
+    font-size: 2vw;
+}
+.foodsDetail{
+    width: 50%;
+}
+.food{
+    font-family: var(--font-4);
+}
+.drinksDetail{
+    width: 50%;
+}
+.drink{
+    font-family: var(--font-4);
+}
+
+/* DETAIL END */
