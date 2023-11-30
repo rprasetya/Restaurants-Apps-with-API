@@ -263,7 +263,6 @@ main{
 .modalTitle{
   display: flex;
   justify-content: space-between;
-  /* align-items: center; */
 }
 .modalTitle h1{
   font-family: var(--font-4);
@@ -306,7 +305,23 @@ main{
 }
 .linkAddFav{
   display: flex;
-  justify-content: end;
+  justify-content: space-between;
+}
+.goToDetailBtn{
+  text-decoration: none;
+  color: var(--color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--bg);
+  min-width: 44px;
+  min-height: 44px;
+  padding: 10px;
+  border-radius: 5px;
+  transition: .1s;
+}
+.goToDetailBtn:hover{
+  padding: 12px;
 }
 .content .addFav{
   display: flex;

@@ -18,6 +18,7 @@ import {
   keys,
   entries,
   values,
+  clear,
 } from 'idb-keyval';
 import { openDB } from 'idb';
 
@@ -136,6 +137,7 @@ const displayModal = (dataModal) => {
     $('.descModal').text(dataModal.description);
     $('.addFav').attr('onclick', `addToFavorite('${dataModal.id}')`)
       .attr('id', `${dataModal.id}`);
+    $('.goToDetailBtn').attr('href', './detail.html');
   });
 };
 
@@ -165,9 +167,15 @@ const checkFav = async (idRest) => {
   });
 };
 
-window.showModal = (idRest) => {
+const addDetail = async (idRest) => {
+  clear();
+  set(idRest).then((response) => response);
+};
+
+window.showModal = async (idRest) => {
   modals(idRest);
   checkFav(idRest);
+  addDetail(idRest);
   $(() => {
     $('.modalsCont').css({
       'background-color': 'rgba(0, 0, 0, 0.507)',

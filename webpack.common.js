@@ -7,6 +7,7 @@ module.exports = {
   entry: {
     app: path.resolve(__dirname, 'src/scripts/index.js'),
     fav: path.resolve(__dirname, 'src/scripts/fav.js'),
+    detail: path.resolve(__dirname, 'src/scripts/detail.js'),
   },
   output: {
     filename: '[name].bundle.js',
@@ -38,6 +39,10 @@ module.exports = {
     new HtmlWebpackPlugin({
       filename: 'fav.html',
       template: path.resolve(__dirname, 'src/templates/fav.html'),
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'detail.html',
+      template: path.resolve(__dirname, 'src/templates/detail.html'),
     }),
     new CopyWebpackPlugin({
       patterns: [

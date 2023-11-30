@@ -1,0 +1,47 @@
+@font-face {
+    font-family: "Circular-Black";
+    src: url(../public/fonts/CircularStd-Black.otf);
+}
+@font-face {
+    font-family: "Circular-Medium";
+    src: url(../public/fonts/CircularStd-Medium.otf);
+}
+@font-face {
+    font-family: "Circular-Book";
+    src: url(../public/fonts/CircularStd-Book.otf);
+}
+@font-face {
+    font-family: "Circular-Light";
+    src: url(../public/fonts/CircularStd-Light.otf);
+}
+:root{
+    --bg: #202020;
+    --bg-darker: #181818;
+    --color: #EEE6F3;
+    --accent-col: #facd00;
+    --font-1: "Circular-Black";
+    --font-2: "Circular-Medium";
+    --font-3: "Circular-Book";
+    --font-4: "Circular-Light";
+}
+::-webkit-scrollbar{
+    display: none;
+}
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+html{
+    scroll-behavior: smooth;
+}
+body{
+    background-color: var(--color);
+    color: var(--bg-darker);
+}
+main{
+    background-color: var(--color);
+    height: 100vh;
+    width: 100vw;
+}
