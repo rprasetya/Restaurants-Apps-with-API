@@ -90,7 +90,7 @@ html{
     font-family: var(--font-3);
 }
 .picDetail{
-    width: 85%;
+    width: 80%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -102,40 +102,108 @@ html{
 .detailContent{
     display: flex;
     flex-direction: column;
-    width: 85%;
+    width: 80%;
     font-family: var(--font-3);
     gap: 20px;
 }
 .adrCityDetail{
-    font-size: 4vw;
+    font-size: 3vw;
     font-family: var(--font-2);
 }
 .descDetail{
     display: flex;
     flex-direction: column;
-    font-size: 3vw;
+    font-size: 2.5vw;
     font-family: var(--font-3);
 }
 .desc{
-    font-size: 2vw;
+    font-size: 1.5vw;
     font-family: var(--font-4);
     text-align: justify;
 }
 .menus{
     display: flex;
-    font-size: 2vw;
+    font-size: 1.5vw;
 }
 .foodsDetail{
     width: 50%;
 }
 .food{
     font-family: var(--font-4);
+    font-size: 1.3vw;
 }
 .drinksDetail{
     width: 50%;
 }
 .drink{
     font-family: var(--font-4);
+    font-size: 1.3vw;
+}
+/* DETAIL END */
+
+/* REVIEW TITLE */
+.reviewTitle{
+    display: flex;
+    justify-content: center;
+    padding-bottom: 20px;
+}
+.reviewTitle h2{
+    width: 80%;
+    font-family: var(--font-1);
+    font-size: 5vw;
 }
 
-/* DETAIL END */
+/* REVIEW TITLE END */
+
+/* REVIEWS */
+.reviewsCont{
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 25px;
+    padding-bottom: 100px;
+}
+.review{
+    width: 80%;
+    display: flex;
+    height: fit-content;
+    padding-block: 10px;
+    background-color: var(--accent-col);
+    border-radius: 10px;
+    box-shadow: 1px 1px 10px 1px var(--bg-darker);
+    padding-inline: 10px;
+    gap: 5px;
+}
+.profileLogo{
+    display: flex;
+    align-items: center;
+    font-size: 2vw;
+    justify-content: center;
+}
+.profileLogo svg{
+    width: 6vw;
+}
+.reviewer{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 4px;
+    margin-right: 10px;
+}
+.reviewer span{
+    font-size: 1.3vw;
+}
+.nameDate {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+.nameDate h2{
+    font-family: var(--font-3);
+    font-size: 1.7vw;
+}
+.nameDate span{
+    font-size: 1vw;
+}
+/* REVIEWS END*/
