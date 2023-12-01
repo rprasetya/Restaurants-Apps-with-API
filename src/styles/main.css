@@ -257,7 +257,7 @@ header nav a:hover{
   width: 35%;
   height: 90%;
   border-radius: 10px;
-  padding-inline: 50px;
+  padding-inline: clamp(10px, 8vw, 50px);
   padding-block: 30px;
 }
 .modalTitle{
@@ -266,21 +266,22 @@ header nav a:hover{
 }
 .modalTitle h1{
   font-family: var(--font-4);
-  font-size: 2.5vw;
+  font-size: clamp(25px, 2.5vw, 100px);
 }
 .modalTitle button{
   background: none;
   font-family: var(--font-2);
   border: none;
-  font-size: 1.5vw;
-  height: fit-content;
+  font-size: clamp(15px, 1.5vw, 1000px);
   min-width: 44px;
   min-height: 44px;
   transition: .2s;
+  display: flex;
+  justify-content: end;
+  align-items: start;
 }
 .modalTitle button:hover{
   font-size: 2vw;
-  background-color: #757575;
   cursor: pointer;
 }
 .modalContent{
@@ -316,9 +317,10 @@ header nav a:hover{
   background-color: var(--bg);
   min-width: 44px;
   min-height: 44px;
-  padding: 10px;
+  padding: clamp(10px, 1vw, 10px);
   border-radius: 5px;
   transition: .1s;
+  font-size: clamp(10px, 1vw, 100px);
 }
 .goToDetailBtn:hover{
   padding: 12px;
@@ -336,7 +338,7 @@ header nav a:hover{
   fill: var(--bg-darker);
   gap: 10px;
   transition: .1s;
-  font-size: 1vw;
+  font-size: clamp(12px, 1vw, 100px);
   z-index: 1;
 }
 .content .addFav:hover{
@@ -348,19 +350,19 @@ header nav a:hover{
   color: #E02D2D;
 }
 .content .addFav svg{
-  width: 1.4vw;
+  width: clamp(12px, 1.4vw, 100px);
 }
 .cityModal{
-  font-size: 2vw;
+  font-size: clamp(20px, 2vw, 100px);
   width: fit-content;
 }
 .description{
   font-family: var(--font-3);
-  font-size: 1.3vw;
-  margin-top: 5px;
+  font-size: clamp(20px, 1.3vw, 100px);
+  margin-top: clamp(.1px, .2vw, 100px);
 }
 .modalContent .content article{
-  font-size: 1vw;
+  font-size: clamp(15px, 1vw, 100px);
   text-align: justify;
   font-family: var(--font-4);
   margin-top: 3px;
@@ -470,6 +472,7 @@ footer{
   }
   .modal{
     width: 80%;
+    height: 70%;
   }
 }
 @media screen and (max-width: 576px){
