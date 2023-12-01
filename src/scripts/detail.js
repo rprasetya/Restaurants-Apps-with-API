@@ -8,7 +8,12 @@ import '../styles/detail.css';
 import $ from 'jquery';
 import axios from 'axios';
 import { async } from 'regenerator-runtime';
-import { keys } from 'idb-keyval';
+import { keys, set } from 'idb-keyval';
+
+// const keyIndexedDb = await keys().then((response) => response);
+// if(keyIndexedDb !== []){
+//   console.log('kimak');
+// }
 
 $(() => {
   // eslint-disable-next-line func-names
@@ -25,14 +30,32 @@ $(() => {
 });
 
 const getDetailAPI = async () => {
-  const idRest = await keys().then((response) => response);
-  const apiUrl = `https://restaurant-api.dicoding.dev/detail/${idRest}`;
   try {
+    const idRest = await keys().then((response) => response);
+    const apiUrl = `https://restaurant-api.dicoding.dev/detail/${idRest}`;
     const response = await axios.get(apiUrl);
-    return response.data.restaurant;
+    const restaurantData = response.data.restaurant;
+
+    if (!restaurantData) {
+      throw new Error('Invalid response format');
+    }
+
+    return restaurantData;
   } catch (error) {
-    console.error(error);
-    throw error;
+    set('rqdv5juczeskfw1e867')
+    const idRest = await keys().then((response) => response);
+    const apiUrl = `https://restaurant-api.dicoding.dev/detail/${idRest}`;
+    const response = await axios.get(apiUrl);
+    const restaurantData = response.data.restaurant;
+
+    if (!restaurantData) {
+      throw new Error('Invalid response format');
+    }
+
+    return restaurantData;
+    
+    // console.error('Error in getDetailAPI:', error);
+    // throw error;
   }
 };
 
@@ -41,7 +64,7 @@ const getReviews = async () => {
     const dataDetail = await getDetailAPI();
     const apiUrl = 'https://restaurant-api.dicoding.dev/review';
     const header = {
-      headers: {
+      header: {
         'Content-Type': 'application/json',
       },
     };
@@ -50,7 +73,6 @@ const getReviews = async () => {
       "name": dataDetail.name,
       "review": 'customerReviews',
     };
-
     const response = await axios.post(apiUrl, body, header);
     return response.data.customerReviews;
   } catch (error) {
@@ -86,7 +108,6 @@ const loadReviews = async () => {
 };
 
 const loadReviewsHtml = async () => {
-  // console.log(await htmlReviews);
   $(() => {
     (async () => {
       try {
