@@ -7,10 +7,9 @@ import 'regenerator-runtime'; /* for async await transpile */
 import '../styles/detail.css';
 import $ from 'jquery';
 import axios from 'axios';
-// import { async } from 'regenerator-runtime';
+import { async } from 'regenerator-runtime';
 import { keys } from 'idb-keyval';
 
-// const 
 $(() => {
   // eslint-disable-next-line func-names
   $(window).on('scroll', function () {

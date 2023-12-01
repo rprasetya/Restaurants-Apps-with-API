@@ -7,17 +7,13 @@
 import 'regenerator-runtime'; /* for async await transpile */
 import '../styles/main.css';
 import $ from 'jquery';
-import axios, { all } from 'axios';
+import axios from 'axios';
 import { async } from 'regenerator-runtime';
 import {
   set,
-  update,
-  get,
   del,
   createStore,
   keys,
-  entries,
-  values,
   clear,
 } from 'idb-keyval';
 import { openDB } from 'idb';
