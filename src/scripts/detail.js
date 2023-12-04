@@ -1,4 +1,7 @@
 /* eslint-disable linebreak-style */
+/* eslint-disable no-unused-vars */
+/* eslint-disable quote-props */
+/* eslint-disable quotes */
 /* eslint-disable no-console */
 /* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable no-trailing-spaces */
@@ -9,9 +12,9 @@ import $ from 'jquery';
 import axios from 'axios';
 import { async } from 'regenerator-runtime';
 import { keys, set } from 'idb-keyval';
-// import swRegister from './sw-register';
+import swRegister from './sw-register';
 
-// swRegister();
+swRegister();
 
 $(() => {
   // eslint-disable-next-line func-names
@@ -40,7 +43,7 @@ const getDetailAPI = async () => {
 
     return restaurantData;
   } catch (error) {
-    set('rqdv5juczeskfw1e867')
+    set('rqdv5juczeskfw1e867');
     const idRest = await keys().then((response) => response);
     const apiUrl = `https://restaurant-api.dicoding.dev/detail/${idRest}`;
     const response = await axios.get(apiUrl);
@@ -81,7 +84,7 @@ const getReviews = async () => {
 
 const loadReviews = async () => {
   const reviews = await getReviews();
-  const cleanedData = reviews.filter(item => item.review !== "customerReviews" && item.review !== "Example customer review");
+  const cleanedData = reviews.filter((item) => item.review !== "customerReviews" && item.review !== "Example customer review");
   const fixedData = Array.from(new Set(cleanedData.map(JSON.stringify)), JSON.parse);
   // console.log(fixedData);
   const htmlReviews = [];
@@ -100,7 +103,7 @@ const loadReviews = async () => {
         </div>
       </div>
     
-    `)
+    `);
   }); 
   return htmlReviews;
 };
@@ -109,7 +112,7 @@ const loadReviewsHtml = async () => {
   $(() => {
     (async () => {
       try {
-        const htmlReviews = await loadReviews()
+        const htmlReviews = await loadReviews();
         if (htmlReviews) {
           $('.reviewsCont').html(htmlReviews);
         } else {

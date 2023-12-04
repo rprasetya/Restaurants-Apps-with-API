@@ -10,10 +10,9 @@ import $ from 'jquery';
 import axios from 'axios';
 import { async } from 'regenerator-runtime';
 import { keys, createStore } from 'idb-keyval';
-// import swRegister from './sw-register';
+import swRegister from './sw-register';
 
-// swRegister();
-
+swRegister();
 
 const fecthDetailRest = async (idRest) => {
   const apiUrl = `https://restaurant-api.dicoding.dev/detail/${idRest}`;

@@ -54,8 +54,42 @@ const fetchAPIRestaurantsAll = async () => {
   }
 };
 
+const fetchDetailRestaurant = async (restaurants) => {
+  const detailPromises = restaurants.map(async (restaurant) => {
+    const apiUrl = `https://restaurant-api.dicoding.dev/detail/${restaurant.id}`;
+    try {
+      const response = await axios.get(apiUrl);
+      return response.data.restaurants;
+    } catch (error) {
+      console.error(error);
+      return null;
+    }
+  });
+  const restaurantDetails = await Promise.all(detailPromises);
+  console.log('Detail Restaurants:', restaurantDetails);
+  return restaurantDetails;
+};
+
+const fetchLargeImageRestaurant = async (restaurants) => {
+  const imagePromises = restaurants.map(async (restaurant) => {
+    const apiUrl = `https://restaurant-api.dicoding.dev/images/large/${restaurant.pictureId}`;
+    try {
+      const response = await axios.get(apiUrl);
+      return response.data.restaurants;
+    } catch (error) {
+      console.error(error);
+      return null;
+    }
+  });
+  const restaurantLargeImage = await Promise.all(imagePromises);
+  console.log('Detail Restaurants:', restaurantLargeImage);
+  return restaurantLargeImage;
+};
+
 const load = async () => {
   const restaurants = await fetchAPIRestaurantsAll();
+  await fetchDetailRestaurant(restaurants);
+  await fetchLargeImageRestaurant(restaurants);
   const customElements = [];
   restaurants.forEach((restaurant) => {
     customElements.push(`

@@ -1,9 +1,10 @@
+/* eslint-disable linebreak-style */
+/* eslint-disable import/no-extraneous-dependencies */
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const WorkboxWebpackPlugin = require('workbox-webpack-plugin');
-
 
 module.exports = {
   entry: {
@@ -39,21 +40,28 @@ module.exports = {
           urlPattern: ({ url }) => url.href.startsWith('https://restaurant-api.dicoding.dev/list'),
           handler: 'StaleWhileRevalidate',
           options: {
-            cacheName: 'restaurants-list-api-response',
+            cacheName: 'list-api-response',
+          },
+        },
+        {
+          urlPattern: ({ url }) => url.href.startsWith('https://restaurant-api.dicoding.dev/detail/'),
+          handler: 'StaleWhileRevalidate',
+          options: {
+            cacheName: 'restaurant-detail-api-response',
           },
         },
         {
           urlPattern: ({ url }) => url.href.match(/^https:\/\/restaurant-api\.dicoding\.dev\/images\/medium\/\d+$/),
           handler: 'StaleWhileRevalidate',
           options: {
-            cacheName: 'restaurants-image-api-response2',
+            cacheName: 'image-medium-api-response',
           },
         },
         {
-          urlPattern: ({ url }) => url.href.match(/^https:\/\/restaurant-api\.dicoding\.dev\/detail\/\d+$/),
+          urlPattern: ({ url }) => url.href.match(/^https:\/\/restaurant-api\.dicoding\.dev\/images\/large\/\d+$/),
           handler: 'StaleWhileRevalidate',
           options: {
-            cacheName: 'restaurants-detail-api-response',
+            cacheName: 'large-image-api-response',
           },
         },
       ],
@@ -81,6 +89,5 @@ module.exports = {
         },
       ],
     }),
-    
   ],
 };
