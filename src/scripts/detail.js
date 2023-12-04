@@ -9,11 +9,9 @@ import $ from 'jquery';
 import axios from 'axios';
 import { async } from 'regenerator-runtime';
 import { keys, set } from 'idb-keyval';
+// import swRegister from './sw-register';
 
-// const keyIndexedDb = await keys().then((response) => response);
-// if(keyIndexedDb !== []){
-//   console.log('kimak');
-// }
+// swRegister();
 
 $(() => {
   // eslint-disable-next-line func-names

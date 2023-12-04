@@ -2,6 +2,8 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const WorkboxWebpackPlugin = require('workbox-webpack-plugin');
+
 
 module.exports = {
   entry: {
@@ -30,6 +32,33 @@ module.exports = {
     ],
   },
   plugins: [
+    new WorkboxWebpackPlugin.GenerateSW({
+      swDest: './sw.bundle.js',
+      runtimeCaching: [
+        {
+          urlPattern: ({ url }) => url.href.startsWith('https://restaurant-api.dicoding.dev/list'),
+          handler: 'StaleWhileRevalidate',
+          options: {
+            cacheName: 'restaurants-list-api-response',
+          },
+        },
+        {
+          urlPattern: ({ url }) => url.href.match(/^https:\/\/restaurant-api\.dicoding\.dev\/images\/medium\/\d+$/),
+          handler: 'StaleWhileRevalidate',
+          options: {
+            cacheName: 'restaurants-image-api-response2',
+          },
+        },
+        {
+          urlPattern: ({ url }) => url.href.match(/^https:\/\/restaurant-api\.dicoding\.dev\/detail\/\d+$/),
+          handler: 'StaleWhileRevalidate',
+          options: {
+            cacheName: 'restaurants-detail-api-response',
+          },
+        },
+      ],
+    }),
+
     new CleanWebpackPlugin(),
 
     new HtmlWebpackPlugin({

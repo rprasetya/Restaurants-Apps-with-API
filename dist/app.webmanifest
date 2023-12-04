@@ -1,0 +1,26 @@
+{
+    "id": "rest-apps",
+    "name": "Restaurant",
+    "short_name": "Restaurant",
+    "theme_color": "#facd00",
+    "background_color": "#181818",
+    "start_url": "./index.html",
+    "display": "standalone",
+    "icons": [
+      {
+        "src": "icons/find-50.png",
+        "sizes": "50x50",
+        "type": "image/png"
+      },
+      {
+        "src": "icons/find-64.png",
+        "sizes": "64x64",
+        "type": "image/png"
+      },
+      {
+        "src": "icons/find-100.png",
+        "sizes": "100x100",
+        "type": "image/png"
+      }
+    ]
+  }

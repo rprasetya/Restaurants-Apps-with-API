@@ -17,6 +17,9 @@ import {
   clear,
 } from 'idb-keyval';
 import { openDB } from 'idb';
+import swRegister from './sw-register';
+
+swRegister();
 
 $(() => {
   // eslint-disable-next-line func-names
