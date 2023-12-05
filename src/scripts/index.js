@@ -66,7 +66,6 @@ const fetchDetailRestaurant = async (restaurants) => {
     }
   });
   const restaurantDetails = await Promise.all(detailPromises);
-  console.log('Detail Restaurants:', restaurantDetails);
   return restaurantDetails;
 };
 
@@ -82,7 +81,6 @@ const fetchLargeImageRestaurant = async (restaurants) => {
     }
   });
   const restaurantLargeImage = await Promise.all(imagePromises);
-  console.log('Detail Restaurants:', restaurantLargeImage);
   return restaurantLargeImage;
 };
 

@@ -4,6 +4,14 @@
 /* eslint-disable no-console */
 import { Workbox } from 'workbox-window';
 
+const pushNotif = () => {
+  if (!("Notification" in window)) {
+    console.log("Browser tidak mendukung notifikasi");
+  } else if(Notification.permission !== "denied") {
+    console.log('hah');
+  }
+};
+
 const swRegister = async () => {
   if (!('serviceWorker' in navigator)) {
     console.log('Service Worker not supported in the browser');
@@ -13,6 +21,8 @@ const swRegister = async () => {
   try {
     await wb.register();
     console.log('Service worker registered');
+    pushNotif();
+
   } catch (error) {
     console.log('Failed to register service worker', error);
   }
