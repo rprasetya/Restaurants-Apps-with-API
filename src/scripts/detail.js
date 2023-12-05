@@ -37,7 +37,6 @@ const getDetailAPI = async () => {
     if (!restaurantData) {
       throw new Error('Invalid response format');
     }
-
     return restaurantData;
   } catch (error) {
     set('rqdv5juczeskfw1e867');
@@ -49,11 +48,7 @@ const getDetailAPI = async () => {
     if (!restaurantData) {
       throw new Error('Invalid response format');
     }
-
     return restaurantData;
-    
-    // console.error('Error in getDetailAPI:', error);
-    // throw error;
   }
 };
 
@@ -83,7 +78,6 @@ const loadReviews = async () => {
   const reviews = await getReviews();
   const cleanedData = reviews.filter((item) => item.review !== "customerReviews" && item.review !== "Example customer review");
   const fixedData = Array.from(new Set(cleanedData.map(JSON.stringify)), JSON.parse);
-  // console.log(fixedData);
   const htmlReviews = [];
   fixedData.forEach((data) => {
     htmlReviews.push(`

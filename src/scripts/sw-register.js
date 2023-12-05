@@ -5,9 +5,9 @@
 import { Workbox } from 'workbox-window';
 
 const pushNotif = () => {
-  if (!("Notification" in window)) {
-    console.log("Browser tidak mendukung notifikasi");
-  } else if(Notification.permission !== "denied") {
+  if (!('Notification' in window)) {
+    console.log('Browser tidak mendukung notifikasi');
+  } else if (Notification.permission !== 'denied') {
     console.log('hah');
   }
 };
@@ -22,7 +22,6 @@ const swRegister = async () => {
     await wb.register();
     console.log('Service worker registered');
     pushNotif();
-
   } catch (error) {
     console.log('Failed to register service worker', error);
   }

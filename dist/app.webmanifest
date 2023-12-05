@@ -2,7 +2,7 @@
     "id": "rest-apps",
     "name": "Find Restaurant Apps",
     "short_name": "Restaurant Apps",
-    "theme_color": "#facd00",
+    "theme_color": "#202020",
     "start_url": "./index.html",
     "display": "standalone",
     "icons": [
