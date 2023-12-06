@@ -177,6 +177,20 @@ header nav a:hover{
   font-family: var(--font-4);
   text-align: justify;
 }
+.detailBtn{
+  text-decoration: none;
+  min-height: 44px;
+  min-width: 44px;
+  background-color: var(--bg);
+  color: var(--color);
+  width: fit-content;
+  font-family: var(--font-4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  border-radius: 5px;
+}
 .pic{
   width: 50%;
 }

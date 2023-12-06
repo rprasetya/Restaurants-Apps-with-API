@@ -9,7 +9,12 @@ import '../styles/fav.css';
 import $ from 'jquery';
 import axios from 'axios';
 import { async } from 'regenerator-runtime';
-import { keys, createStore } from 'idb-keyval';
+import {
+  keys,
+  createStore,
+  set,
+  clear,
+} from 'idb-keyval';
 
 const fecthDetailRest = async (idRest) => {
   const apiUrl = `https://restaurant-api.dicoding.dev/detail/${idRest}`;
@@ -26,6 +31,11 @@ const getFavRest = async () => {
   const customStore = createStore('Restaurants-Apps', 'addFavorite');
   const favRest = await keys(customStore).then((response) => response);
   return favRest;
+};
+
+window.setToIndexedDB = async (idRest) => {
+  clear();
+  set(idRest).then((response) => response);
 };
 
 const loadHtml = async () => {
@@ -56,6 +66,9 @@ const loadHtml = async () => {
             <span>DESCRIPTION</span>
             <span class="descRest">${detailApiRest.description}</span>
           </div>
+          <a href="./detail.html" class="detailBtn" onclick="setToIndexedDB('${detailApiRest.id}')">
+            Go to See Detail >>>
+          </a>
         </div>
         <div class="pic">
           <img class="imgFav" src="https://restaurant-api.dicoding.dev/images/large/${detailApiRest.pictureId}" alt="">

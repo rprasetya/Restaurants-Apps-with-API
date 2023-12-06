@@ -54,13 +54,12 @@ html{
     justify-content: center;
     align-items: center;
     gap: 10px;
-    font-size: 1.8vw;
+    font-size: 35px;
     padding-left: 30px;
     font-family: var(--font-3);
-    /* margin-top: 0px; */
 }
 .headerDetail a svg{
-    width: 3vw;
+    width: 35px;
 }
 .mainDetail{
     background-color: var(--color);
