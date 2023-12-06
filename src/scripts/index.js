@@ -18,6 +18,11 @@ import {
 } from 'idb-keyval';
 import { openDB } from 'idb';
 import swRegister from './sw-register';
+import 'lazysizes';
+import 'lazysizes/plugins/parent-fit/ls.parent-fit';
+// class="lazyload" data-src="https://picsum.photos/id/${i}/400/400"
+const START = 10;
+const NUMBER_OF_IMAGES = 100;
 
 swRegister();
 
@@ -163,7 +168,8 @@ $(() => {
 const displayModal = (dataModal) => {
   $(() => {
     $('.modalTitle h1').text(dataModal.name);
-    $('.modalContent .image img').attr('src', `https://restaurant-api.dicoding.dev/images/large/${dataModal.pictureId}`);
+    $('.modalContent .image img').attr('data-src', `https://restaurant-api.dicoding.dev/images/large/${dataModal.pictureId}`)
+      .addClass('lazyload');
     $('.cityModal').text(dataModal.city);
     $('.descModal').text(dataModal.description);
     $('.addFav').attr('onclick', `addToFavorite('${dataModal.id}')`)
