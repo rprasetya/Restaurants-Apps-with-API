@@ -20,7 +20,8 @@ import { openDB } from 'idb';
 import swRegister from './sw-register';
 import 'lazysizes';
 import 'lazysizes/plugins/parent-fit/ls.parent-fit';
-// class="lazyload" data-src="https://picsum.photos/id/${i}/400/400"
+import 'jquery-inview';
+
 const START = 10;
 const NUMBER_OF_IMAGES = 100;
 
@@ -96,7 +97,7 @@ const load = async () => {
   const customElements = [];
   restaurants.forEach((restaurant) => {
     customElements.push(`
-        <div class="card" onclick="showModal('${restaurant.id}')" style="background-image: url(https://restaurant-api.dicoding.dev/images/medium/${restaurant.pictureId});">
+        <div class="card lazy-background" onclick="showModal('${restaurant.id}')" style="background-image: url(https://restaurant-api.dicoding.dev/images/medium/${restaurant.pictureId});">
           <div class="cardContent">
             <a href="#">
               <span>
@@ -116,6 +117,16 @@ const load = async () => {
   });
   return customElements;
 };
+
+$(() => {
+  $('.lazy-background').on('inview', (event, isInView) => {
+    if (isInView) {
+      const $this = $(this);
+      const bg = $this.data('bg');
+      $this.css('background-image', bg);
+    }
+  });
+});
 
 $(() => {
   (async () => {
@@ -168,8 +179,7 @@ $(() => {
 const displayModal = (dataModal) => {
   $(() => {
     $('.modalTitle h1').text(dataModal.name);
-    $('.modalContent .image img').attr('data-src', `https://restaurant-api.dicoding.dev/images/large/${dataModal.pictureId}`)
-      .addClass('lazyload');
+    $('.modalContent .image img').attr('data-src', `https://restaurant-api.dicoding.dev/images/large/${dataModal.pictureId}`);
     $('.cityModal').text(dataModal.city);
     $('.descModal').text(dataModal.description);
     $('.addFav').attr('onclick', `addToFavorite('${dataModal.id}')`)

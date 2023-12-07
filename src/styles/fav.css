@@ -1,28 +1,32 @@
 @font-face {
   font-family: "Circular-Black";
   src: url(../public/fonts/CircularStd-Black.otf);
+  font-display: swap;
 }
 @font-face {
   font-family: "Circular-Medium";
   src: url(../public/fonts/CircularStd-Medium.otf);
+  font-display: swap;
 }
 @font-face {
   font-family: "Circular-Book";
   src: url(../public/fonts/CircularStd-Book.otf);
+  font-display: swap;
 }
 @font-face {
   font-family: "Circular-Light";
   src: url(../public/fonts/CircularStd-Light.otf);
+  font-display: swap;
 }
 :root{
   --bg: #202020;
   --bg-darker: #181818;
   --color: #EEE6F3;
   --accent-col: #facd00;
-  --font-1: "Circular-Black";
-  --font-2: "Circular-Medium";
-  --font-3: "Circular-Book";
-  --font-4: "Circular-Light";
+  --font-1: "Circular-Black", sans-serif;
+  --font-2: "Circular-Medium", sans-serif;
+  --font-3: "Circular-Book", sans-serif;
+  --font-4: "Circular-Light", sans-serif;
 }
 ::-webkit-scrollbar{
   display: none;
