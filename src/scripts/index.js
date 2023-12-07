@@ -271,3 +271,16 @@ window.addToFavorite = async (pictureId) => {
   }
   addingFav(pictureId);
 };
+
+export const Test = () => {
+  addingFav(pictureId).init({
+    likeButtonContainer: document.querySelector('.addFav'),
+    movie: {
+      id: movie.id,
+      title: movie.title,
+      overview: movie.overview,
+      backdrop_path: movie.backdrop_path,
+      vote_average: movie.vote_average,
+    },
+  });;
+}
