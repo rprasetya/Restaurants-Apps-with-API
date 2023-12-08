@@ -121,7 +121,8 @@ const loadDetail = async () => {
   const dataDetail = await getDetailAPI();
   $(() => {
     $('.detailTitle h1').text(dataDetail.name.toUpperCase());
-    $('.picDetail img').attr('src', `https://restaurant-api.dicoding.dev/images/large/${dataDetail.pictureId}`);
+    $('.picDetail picture source').attr('srcset', `https://restaurant-api.dicoding.dev/images/medium/${dataDetail.pictureId}`);
+    $('.picDetail picture img').attr('src', `https://restaurant-api.dicoding.dev/images/large/${dataDetail.pictureId}`);
     $('.adrCityDetail').text(`${dataDetail.address}, ${dataDetail.city}`);
     $('.desc').text(dataDetail.description);
     $('.food').html(dataDetail.menus.foods.map((food) => food.name).join('<br>').toUpperCase());

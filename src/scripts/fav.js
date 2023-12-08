@@ -71,7 +71,10 @@ const loadHtml = async () => {
           </a>
         </div>
         <div class="pic">
-          <img class="imgFav" src="https://restaurant-api.dicoding.dev/images/large/${detailApiRest.pictureId}" alt="">
+          <picture>
+            <source media="(max-width: 768px)" srcset="https://restaurant-api.dicoding.dev/images/medium/${detailApiRest.pictureId}">
+            <img class="imgFav" src="https://restaurant-api.dicoding.dev/images/large/${detailApiRest.pictureId}" alt="">
+          </picture>
           <div class="contentCont">
             <span>FOODS MENU</span>
             <span class="foods">${detailApiRest.menus.foods.map((food) => food.name).join(', ')}</span>

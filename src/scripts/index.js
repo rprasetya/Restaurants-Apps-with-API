@@ -97,7 +97,7 @@ const load = async () => {
   const customElements = [];
   restaurants.forEach((restaurant) => {
     customElements.push(`
-        <div class="card lazy-background" onclick="showModal('${restaurant.id}')" style="background-image: url(https://restaurant-api.dicoding.dev/images/medium/${restaurant.pictureId});">
+        <div class="card lazy-background" onclick="showModal('${restaurant.id}')"style="background-image: url(https://restaurant-api.dicoding.dev/images/medium/${restaurant.pictureId});">
           <div class="cardContent">
             <a href="#">
               <span>
@@ -272,15 +272,15 @@ window.addToFavorite = async (pictureId) => {
   addingFav(pictureId);
 };
 
-export const Test = () => {
-  addingFav(pictureId).init({
-    likeButtonContainer: document.querySelector('.addFav'),
-    movie: {
-      id: movie.id,
-      title: movie.title,
-      overview: movie.overview,
-      backdrop_path: movie.backdrop_path,
-      vote_average: movie.vote_average,
-    },
-  });;
-}
+// export const Test = () => {
+//   addingFav(pictureId).init({
+//     likeButtonContainer: document.querySelector('.addFav'),
+//     movie: {
+//       id: movie.id,
+//       title: movie.title,
+//       overview: movie.overview,
+//       backdrop_path: movie.backdrop_path,
+//       vote_average: movie.vote_average,
+//     },
+//   });;
+// }
