@@ -4,7 +4,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable import/no-duplicates */
-import 'regenerator-runtime'; /* for async await transpile */
+import 'regenerator-runtime/runtime';
 import '../styles/main.css';
 import $ from 'jquery';
 import axios from 'axios';
@@ -214,6 +214,7 @@ const checkFav = async (idRest) => {
   });
 };
 
+
 const addDetail = async (idRest) => {
   clear();
   set(idRest).then((response) => response);
@@ -262,7 +263,7 @@ const removeFav = async (pictureId) => {
   del(pictureId, customStore);
 };
 
-window.addToFavorite = async (pictureId) => {
+const addToFavorite = async (pictureId) => {
   const customStore = createStore('Restaurants-Apps', 'addFavorite');
   const entriesData = await keys(customStore).then((response) => response);
   if (entriesData.includes(pictureId)) {
@@ -272,15 +273,6 @@ window.addToFavorite = async (pictureId) => {
   addingFav(pictureId);
 };
 
-// export const Test = () => {
-//   addingFav(pictureId).init({
-//     likeButtonContainer: document.querySelector('.addFav'),
-//     movie: {
-//       id: movie.id,
-//       title: movie.title,
-//       overview: movie.overview,
-//       backdrop_path: movie.backdrop_path,
-//       vote_average: movie.vote_average,
-//     },
-//   });;
-// }
+window.addToFavorite = addToFavorite;
+
+export default addToFavorite;

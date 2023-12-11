@@ -10,7 +10,6 @@ import 'regenerator-runtime'; /* for async await transpile */
 import '../styles/detail.css';
 import $ from 'jquery';
 import axios from 'axios';
-import { async } from 'regenerator-runtime';
 import { keys, set } from 'idb-keyval';
 
 $(() => {

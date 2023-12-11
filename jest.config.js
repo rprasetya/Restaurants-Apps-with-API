@@ -19,6 +19,9 @@ const config = {
   transform: {
     '^.+\\.(js|ts)$': 'babel-jest',
   },
+  "moduleNameMapper": {
+    "\\.(css|less|scss|sass)$": "identity-obj-proxy"
+  }
 };
 
 module.exports = config;

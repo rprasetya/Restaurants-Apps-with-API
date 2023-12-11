@@ -8,7 +8,6 @@ import 'regenerator-runtime'; /* for async await transpile */
 import '../styles/fav.css';
 import $ from 'jquery';
 import axios from 'axios';
-import { async } from 'regenerator-runtime';
 import {
   keys,
   createStore,
