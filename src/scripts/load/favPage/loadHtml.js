@@ -1,43 +1,7 @@
-/* eslint-disable linebreak-style */
-/* eslint-disable max-len */
-/* eslint-disable no-console */
-/* eslint-disable no-unused-vars */
-/* eslint-disable import/no-extraneous-dependencies */
-/* eslint-disable import/no-duplicates */
-import 'regenerator-runtime'; /* for async await transpile */
-import '../styles/fav.css';
-import $ from 'jquery';
-import axios from 'axios';
-import {
-  keys,
-  createStore,
-  set,
-  clear,
-} from 'idb-keyval';
+import { fecthDetailRest } from "../../fetch/fecthDetailRest";
+import { getFavRest } from "../../indexedDB/fav/getFavRest";
 
-const fecthDetailRest = async (idRest) => {
-  const apiUrl = `https://restaurant-api.dicoding.dev/detail/${idRest}`;
-  try {
-    const response = await axios.get(apiUrl);
-    return response.data.restaurant;
-  } catch (error) {
-    console.error(error);
-    throw error;
-  }
-};
-
-const getFavRest = async () => {
-  const customStore = createStore('Restaurants-Apps', 'addFavorite');
-  const favRest = await keys(customStore).then((response) => response);
-  return favRest;
-};
-
-window.setToIndexedDB = async (idRest) => {
-  clear();
-  set(idRest).then((response) => response);
-};
-
-const loadHtml = async () => {
+export const loadHtml = async () => {
   const dataFavRest = await getFavRest();
   const showHtmlPromises = dataFavRest.map(async (data) => {
     const detailApiRest = await fecthDetailRest(data);
@@ -89,12 +53,3 @@ const loadHtml = async () => {
   const showHtml = await Promise.all(showHtmlPromises);
   return showHtml;
 };
-
-const load = async () => {
-  const dataRestHtml = await loadHtml();
-  $(() => {
-    $('.contentFavCont').html(dataRestHtml);
-  });
-};
-
-load();
