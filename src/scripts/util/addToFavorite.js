@@ -1,9 +1,12 @@
-import { addingFav } from "../indexedDB/fav/addingFav";
-import { removeFav } from "../indexedDB/fav/removeFav";
+/* eslint-disable linebreak-style */
+/* eslint-disable import/no-extraneous-dependencies */
+/* eslint-disable import/prefer-default-export */
 import {
   createStore,
   keys,
 } from 'idb-keyval';
+import { addingFav } from '../indexedDB/fav/addingFav';
+import { removeFav } from '../indexedDB/fav/removeFav';
 
 export const addToFavorite = async (pictureId) => {
   const customStore = createStore('Restaurants-Apps', 'addFavorite');

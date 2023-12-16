@@ -1,5 +1,9 @@
-import axios from "axios";
-import { getDetailAPI } from "./getDetailAPI";
+/* eslint-disable linebreak-style */
+/* eslint-disable no-console */
+/* eslint-disable import/no-extraneous-dependencies */
+/* eslint-disable import/prefer-default-export */
+import axios from 'axios';
+import { getDetailAPI } from './getDetailAPI';
 
 export const getReviews = async () => {
   try {
@@ -11,9 +15,9 @@ export const getReviews = async () => {
       },
     };
     const body = {
-      "id": dataDetail.id,
-      "name": dataDetail.name,
-      "review": 'customerReviews',
+      id: dataDetail.id,
+      name: dataDetail.name,
+      review: 'customerReviews',
     };
     const response = await axios.post(apiUrl, body, header);
     return response.data.customerReviews;

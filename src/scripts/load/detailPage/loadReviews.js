@@ -1,8 +1,10 @@
-import { getReviews } from "../../fetch/getReviews";
+/* eslint-disable linebreak-style */
+/* eslint-disable import/prefer-default-export */
+import { getReviews } from '../../fetch/getReviews';
 
 export const loadReviews = async () => {
   const reviews = await getReviews();
-  const cleanedData = reviews.filter((item) => item.review !== "customerReviews" && item.review !== "Example customer review");
+  const cleanedData = reviews.filter((item) => item.review !== 'customerReviews' && item.review !== 'Example customer review');
   const fixedData = Array.from(new Set(cleanedData.map(JSON.stringify)), JSON.parse);
   const htmlReviews = [];
   fixedData.forEach((data) => {
@@ -21,6 +23,6 @@ export const loadReviews = async () => {
       </div>
     
     `);
-  }); 
+  });
   return htmlReviews;
 };

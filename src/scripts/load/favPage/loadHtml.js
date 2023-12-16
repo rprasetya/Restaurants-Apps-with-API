@@ -1,5 +1,7 @@
-import { fecthDetailRest } from "../../fetch/fecthDetailRest";
-import { getFavRest } from "../../indexedDB/fav/getFavRest";
+/* eslint-disable linebreak-style */
+/* eslint-disable import/prefer-default-export */
+import { fecthDetailRest } from '../../fetch/fecthDetailRest';
+import { getFavRest } from '../../indexedDB/fav/getFavRest';
 
 export const loadHtml = async () => {
   const dataFavRest = await getFavRest();
@@ -36,7 +38,7 @@ export const loadHtml = async () => {
         <div class="pic">
           <picture>
             <source media="(max-width: 768px)" srcset="https://restaurant-api.dicoding.dev/images/medium/${detailApiRest.pictureId}">
-            <img class="imgFav" src="https://restaurant-api.dicoding.dev/images/large/${detailApiRest.pictureId}" alt="">
+            <img class="imgFav lazyload" data-src="https://restaurant-api.dicoding.dev/images/large/${detailApiRest.pictureId}" alt="">
           </picture>
           <div class="contentCont">
             <span>FOODS MENU</span>

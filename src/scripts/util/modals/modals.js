@@ -1,4 +1,6 @@
-import { displayModal } from "./displayModal";
+/* eslint-disable linebreak-style */
+/* eslint-disable import/prefer-default-export */
+import { displayModal } from './displayModal';
 
 export const modals = async (idRest) => {
   const xhttp = new XMLHttpRequest();

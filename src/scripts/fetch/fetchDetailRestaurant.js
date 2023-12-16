@@ -1,4 +1,8 @@
-import axios from "axios";
+/* eslint-disable linebreak-style */
+/* eslint-disable import/no-extraneous-dependencies */
+/* eslint-disable no-console */
+/* eslint-disable import/prefer-default-export */
+import axios from 'axios';
 
 export const fetchDetailRestaurant = async (restaurants) => {
   const detailPromises = restaurants.map(async (restaurant) => {

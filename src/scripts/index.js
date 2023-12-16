@@ -9,15 +9,6 @@ import '../styles/main.css';
 import '../styles/fav.css';
 import '../styles/detail.css';
 import $ from 'jquery';
-import axios from 'axios';
-import {
-  set,
-  del,
-  createStore,
-  keys,
-  clear,
-} from 'idb-keyval';
-import { openDB } from 'idb';
 import swRegister from './sw-register';
 import 'lazysizes';
 import 'lazysizes/plugins/parent-fit/ls.parent-fit';

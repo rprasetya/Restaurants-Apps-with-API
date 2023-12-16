@@ -1,6 +1,8 @@
-import { getDetailAPI } from "../../fetch/getDetailAPI";
-import { loadReviewsHtml } from "./loadReviewsHtml";
+/* eslint-disable linebreak-style */
+/* eslint-disable import/prefer-default-export */
 import $ from 'jquery';
+import { getDetailAPI } from '../../fetch/getDetailAPI';
+import { loadReviewsHtml } from './loadReviewsHtml';
 
 export const loadDetail = async () => {
   loadReviewsHtml();

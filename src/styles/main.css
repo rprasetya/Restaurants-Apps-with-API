@@ -54,7 +54,7 @@ header{
   align-items: center;
   justify-content: space-between;
   transition: .2s;
-  z-index: 1;
+  z-index: 2;
 }
 .skip{
   position: fixed;
@@ -184,21 +184,19 @@ header nav a:hover{
   gap: 20px;
 }
 .card{
-  background-size: cover;
-  background-position: center;
+  border: 1px solid var(--color);
   border-radius: 10px;
-  height: 40vh;
+  transition: .3s ease-in-out;
 }
-/* .card a:focus{
-  background-color: #181818b7;
-  backdrop-filter: blur(5px);
-} */
+.card:hover{
+  cursor: pointer;
+  scale: 102%;
+}
 .cardContent a{
   text-decoration: none;
   color: var(--color);
   display: flex;
   flex-direction: column;
-  z-index: -1;
 }
 .cardContent{
   height: 100%;
@@ -219,16 +217,28 @@ header nav a:hover{
   cursor: pointer;
 }
 .cardContent a:hover{
-  cursor: default;
+  cursor: pointer;
 }
 .cardContent a:focus{
   z-index: 1;
   cursor: default;
 }
-.cardContent span svg{
-  width: 1.2vw;
+.cardContent a picture{
+  display: flex;
+  justify-content: center;
+  margin-top: 25px;
+  margin-bottom: 10px;
+}
+.cardContent a .imgFav {
+  width: 100%;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+} 
+.cardContent a span svg{
+  width: 10px;
 }
 .cardContent span:nth-child(1){
+  text-decoration: none;
   font-size: 1.5vw;
 }
 .cardContent span:nth-child(2){
@@ -471,12 +481,12 @@ footer{
 
 /* Responsive */
 @media screen and (max-width: 768px){
-  .cardContent a{
-    z-index: 1;
-  }
   .modal{
     width: 80%;
     height: 70%;
+  }
+  .homeCont{
+    background-image: url(../public/images/heros/hero-image_1_small.jpg);
   }
 }
 @media screen and (max-width: 576px){
@@ -488,7 +498,7 @@ footer{
     display: flex;
     flex-direction: column;
     gap: 5px;
-    margin-right: 10vw;
+    margin-right: 8vw;
     z-index: 1;
     background: none;
     border: none;

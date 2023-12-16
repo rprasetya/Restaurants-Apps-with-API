@@ -1,7 +1,9 @@
-import { addDetail } from "../../indexedDB/detail/addDetail";
-import { checkFav } from "../../indexedDB/home/checkFav";
-import { modals } from "./modals";
+/* eslint-disable linebreak-style */
+/* eslint-disable import/prefer-default-export */
 import $ from 'jquery';
+import { addDetail } from '../../indexedDB/detail/addDetail';
+import { checkFav } from '../../indexedDB/home/checkFav';
+import { modals } from './modals';
 
 export const showModal = async (idRest) => {
   modals(idRest);

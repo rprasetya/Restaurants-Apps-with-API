@@ -1,6 +1,9 @@
-import { fetchAPIRestaurantsAll } from "../../fetch/fetchAPIRestaurantsAll";
-import { fetchDetailRestaurant } from "../../fetch/fetchDetailRestaurant";
-import { fetchLargeImageRestaurant } from "../../fetch/fetchLargeImageRestaurant";
+/* eslint-disable linebreak-style */
+/* eslint-disable import/no-extraneous-dependencies */
+/* eslint-disable import/prefer-default-export */
+import { fetchAPIRestaurantsAll } from '../../fetch/fetchAPIRestaurantsAll';
+import { fetchDetailRestaurant } from '../../fetch/fetchDetailRestaurant';
+import { fetchLargeImageRestaurant } from '../../fetch/fetchLargeImageRestaurant';
 
 export const load = async () => {
   const restaurants = await fetchAPIRestaurantsAll();
@@ -9,9 +12,13 @@ export const load = async () => {
   const customElements = [];
   restaurants.forEach((restaurant) => {
     customElements.push(`
-        <div class="card lazy-background" onclick="showModal('${restaurant.id}')"style="background-image: url(https://restaurant-api.dicoding.dev/images/medium/${restaurant.pictureId});">
+        <div class="card lazy-background" onclick="showModal('${restaurant.id}')">
           <div class="cardContent">
             <a href="#">
+              <picture>
+                <source media="(max-width: 768px)" srcset="https://restaurant-api.dicoding.dev/images/medium/${restaurant.pictureId}">
+                <img class="imgFav lazyload" data-src="https://restaurant-api.dicoding.dev/images/large/${restaurant.pictureId}" alt="">
+              </picture>
               <span>
                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#EEE6F3" version="1.1" id="Capa_1" viewBox="0 0 36.09 36.09" xml:space="preserve">
                   <g>
@@ -22,7 +29,7 @@ export const load = async () => {
               </span>
               <span>${restaurant.name}.</span>
               <span>${restaurant.city}</span>
-            </a>
+              </a>
           </div>
         </div>
     `);

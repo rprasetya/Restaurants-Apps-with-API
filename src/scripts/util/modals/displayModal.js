@@ -1,3 +1,5 @@
+/* eslint-disable linebreak-style */
+/* eslint-disable import/prefer-default-export */
 import $ from 'jquery';
 
 export const displayModal = (dataModal) => {
